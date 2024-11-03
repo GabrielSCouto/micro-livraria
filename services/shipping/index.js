@@ -21,6 +21,12 @@ server.addService(shippingProto.ShippingService.service, {
             value: shippingValue,
         });
     },
+    SearchProductByID: (payload, callback) => {
+            callback(
+                null,
+                products.find((product) => product.id == payload.request.id)
+            );
+        },
 });
 
 server.bindAsync('0.0.0.0:3001', grpc.ServerCredentials.createInsecure(), () => {
